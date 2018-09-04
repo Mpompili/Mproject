@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Create Schema 
+// Create Schema
 
 const UserSchema = new Schema({
     name: {
@@ -25,7 +25,7 @@ const UserSchema = new Schema({
     }
 });
 
-// could also maybe use 
-// let User = mongoose.model('users', UserSchema); 
+// could also maybe use
+const User = mongoose.model('users', UserSchema);
 
-module.exports = User = mongoose.model('users', UserSchema);
+module.exports = User;
