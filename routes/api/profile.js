@@ -42,6 +42,46 @@ router.get(
     }
 );
 
+// @route   GET api/profile/user/:user_id
+// @desc    Get profile by user ID
+// @access  Public
+
+router.get('/user/:user_id', (req, res) => {
+    const errors = {};
+
+    Profile.findOne({ handle: req.params.user_id }) //req.params.handle grabs :handle
+        .populate('user', ['name', 'avatar'])
+        .then(profile => {
+            if (!profile) {
+                errors.nouser = 'The user is not valid';
+                res.status(404).json(errors);
+            }
+
+            res.json(profile);
+        })
+        .catch(err => res.status(404).json(err));
+});
+
+// @route   GET api/profile/handle/:handle
+// @desc    Get profile by handle
+// @access  Public
+
+router.get('/handle/:handle', (req, res) => {
+    const errors = {};
+
+    Profile.findOne({ handle: req.params.handle }) //req.params.handle grabs :handle
+        .populate('user', ['name', 'avatar'])
+        .then(profile => {
+            if (!profile) {
+                errors.noprofile = 'The profile is not valid';
+                res.status(404).json(errors);
+            }
+
+            res.json(profile);
+        })
+        .catch(err => res.status(404).json(err));
+});
+
 // @route   POST api/profile
 // @desc    Create user profile
 // @access  Private
@@ -55,6 +95,7 @@ router.post(
         if (!isValid) {
             return res.status(400).json(errors);
         }
+
         // Get fields
         const profileFields = {};
         profileFields.user = req.user.id;
@@ -66,6 +107,7 @@ router.post(
         if (req.body.status) profileFields.status = req.body.status;
         if (req.body.githubHandle)
             profileFields.githubHandle = req.body.githubHandle;
+
         // Skills - Split into an array
         if (typeof req.body.skills !== 'undefined') {
             profileFields.skills = req.body.skills.split(','); // might need to trim.
