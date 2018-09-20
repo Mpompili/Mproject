@@ -9,6 +9,7 @@ export default class Login extends Component {
             errors: {}
         };
     }
+
     updateField = e => {
         this.setState({
             [e.target.name]: e.target.value
@@ -23,6 +24,7 @@ export default class Login extends Component {
         };
         console.log(newUser);
     };
+
     render() {
         return (
             <div className="login">
