@@ -8,23 +8,21 @@ export default class Login extends Component {
             password: '',
             errors: {}
         };
-        this.updateField = this.updateField.bind(this);
-        this.submit = this.submit.bind(this);
     }
-    updateField(e) {
+    updateField = e => {
         this.setState({
             [e.target.name]: e.target.value
         });
-    }
+    };
 
-    submit(e) {
+    submit = e => {
         e.preventDefault();
         const newUser = {
             email: this.state.email,
             password: this.state.password
         };
         console.log(newUser);
-    }
+    };
     render() {
         return (
             <div className="login">
@@ -43,6 +41,7 @@ export default class Login extends Component {
                                         className="form-control form-control-lg"
                                         placeholder="Email Address"
                                         name="email"
+                                        value={this.state.email}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -52,6 +51,7 @@ export default class Login extends Component {
                                         className="form-control form-control-lg"
                                         placeholder="Password"
                                         name="password"
+                                        value={this.state.password}
                                     />
                                 </div>
                                 <input

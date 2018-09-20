@@ -10,14 +10,13 @@ export default class Register extends Component {
             password2: '',
             errors: {}
         };
-        this.updateField = this.updateField.bind(this);
-        this.submit = this.submit.bind(this);
-    }
-    updateField(e) {
-        this.setState({ [e.target.name]: e.target.value });
     }
 
-    submit(e) {
+    updateField = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
+
+    submit = e => {
         e.preventDefault();
         const newUser = {
             name: this.state.name,
@@ -26,7 +25,7 @@ export default class Register extends Component {
             password2: this.state.password2
         };
         console.log(newUser);
-    }
+    };
     render() {
         return (
             <div className="register">
