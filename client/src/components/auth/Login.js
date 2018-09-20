@@ -1,6 +1,30 @@
 import React, { Component } from 'react';
 
 export default class Login extends Component {
+    constructor() {
+        super();
+        this.state = {
+            email: '',
+            password: '',
+            errors: {}
+        };
+        this.updateField = this.updateField.bind(this);
+        this.submit = this.submit.bind(this);
+    }
+    updateField(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    submit(e) {
+        e.preventDefault();
+        const newUser = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        console.log(newUser);
+    }
     render() {
         return (
             <div className="login">
@@ -11,9 +35,10 @@ export default class Login extends Component {
                             <p className="lead text-center">
                                 Sign in to your DevConnector account
                             </p>
-                            <form action="dashboard.html">
+                            <form onSubmit={this.submit}>
                                 <div className="form-group">
                                     <input
+                                        onChange={this.updateField}
                                         type="email"
                                         className="form-control form-control-lg"
                                         placeholder="Email Address"
@@ -22,6 +47,7 @@ export default class Login extends Component {
                                 </div>
                                 <div className="form-group">
                                     <input
+                                        onChange={this.updateField}
                                         type="password"
                                         className="form-control form-control-lg"
                                         placeholder="Password"
