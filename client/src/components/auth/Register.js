@@ -43,7 +43,7 @@ export default class Register extends Component {
                             <p className="lead text-center">
                                 Create your DevConnector account
                             </p>
-                            <form onSubmit={this.submit}>
+                            <form noValidate onSubmit={this.submit}>
                                 <div className="form-group">
                                     <input
                                         onChange={this.updateField}
