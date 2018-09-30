@@ -12,27 +12,23 @@ import Register from './components/auth/Register';
 import './App.css';
 
 class App extends Component {
-    render() {
-        return (
-            <Provider store={store}>
-                <Router>
-                    <div className="App">
-                        <Navbar />
-                        <div className="container">
-                            <Route
-                                exact
-                                path="/register"
-                                component={Register}
-                            />
-                            <Route exact path="/login" component={Login} />
-                        </div>
-                        <Route exact path="/" component={Landing} />
-                        <Footer />
-                    </div>
-                </Router>
-            </Provider>
-        );
-    }
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <div className="container">
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+            </div>
+            <Route exact path="/" component={Landing} />
+            <Footer />
+          </div>
+        </Router>
+      </Provider>
+    );
+  }
 }
 
 export default App;
